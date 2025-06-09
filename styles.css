@@ -1,0 +1,381 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 46, 0.8);
+    z-index: -1;
+}
+.navbar {
+    background: rgba(22, 33, 62, 0.9);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10;
+    overflow: visible;
+}
+.navbar .logo {
+    font-size: 1.5em;
+    color: #a155b9;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(161, 85, 185, 0.7);
+    flex-shrink: 0;
+}
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: rgba(22, 33, 62, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    backdrop-filter: blur(20px);
+    z-index: 5;
+}
+.sidebar a {
+    margin: 20px 0;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #a155b9, #00d4b6);
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 40px;
+    height: 40px;
+}
+.sidebar a:hover, .sidebar a.active {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(161, 85, 185, 0.7);
+}
+.sidebar .icon {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+    fill: none;
+    transition: stroke 0.3s;
+}
+.sidebar a:hover .icon, .sidebar a.active .icon {
+    stroke: #e0e0e0;
+}
+.container {
+    margin-left: 60px;
+    padding: 120px 20px;
+    text-align: center;
+    min-height: calc(100vh - 60px);
+    box-sizing: border-box;
+}
+.quote {
+    font-size: 2.5em;
+    color: #a155b9;
+    text-shadow: 0 0 15px rgba(161, 85, 185, 0.7);
+    margin-bottom: 10px;
+    animation: glow 2s infinite alternate;
+}
+.subquote {
+    font-size: 1.2em;
+    color: #e0e0e0;
+}
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(161, 85, 185, 0.5); }
+    to { text-shadow: 0 0 20px rgba(161, 85, 185, 1); }
+}
+.section {
+    display: none;
+    margin-top: 20px;
+}
+.section.active {
+    display: block;
+}
+.card {
+    background: rgba(15, 52, 96, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 10px auto;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(161, 85, 185, 0.3);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.input-group {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.input-group input, .input-group button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    width: 100%;
+    max-width: 200px;
+    box-sizing: border-box;
+}
+.input-group button {
+    background: #a155b9;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(161, 85, 185, 0.5);
+    transition: transform 0.2s;
+}
+.input-group button:hover {
+    transform: scale(1.05);
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    background: rgba(15, 52, 96, 0.8);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    background: #a155b9;
+    transition: width 0.3s ease;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+.calendar-grid div {
+    padding: 10px;
+    background: rgba(15, 52, 96, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    position: relative;
+    cursor: pointer;
+}
+.calendar-grid .today {
+    background: #a155b9;
+    color: white;
+}
+.calendar-grid .event {
+    background: #00d4b6;
+}
+.calendar-grid .event::after {
+    content: '•';
+    color: red;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.timer {
+    font-size: 2.5em;
+    color: #a155b9;
+    text-shadow: 0 0 10px rgba(161, 85, 185, 0.7);
+    margin: 20px 0;
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.view-plan-btn, .timer-btn {
+    background: linear-gradient(45deg, #a155b9, #00d4b6);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(161, 85, 185, 0.7);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.view-plan-btn:hover, .timer-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(161, 85, 185, 1);
+}
+/* Circular Progress Styles */
+.progress-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+.progress-circle svg {
+    transform: rotate(-90deg);
+}
+.progress-circle .background-circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 10;
+}
+.progress-circle .progress {
+    fill: none;
+    stroke: #a155b9;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s ease;
+}
+.progress-circle .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #a155b9;
+    text-shadow: 0 0 10px rgba(161, 85, 185, 0.7);
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 10px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    .navbar .logo {
+        font-size: 1.2em;
+        margin-left: 10px;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+        top: auto;
+        bottom: 0;
+        position: fixed;
+    }
+    .sidebar a {
+        margin: 0 5px;
+        padding: 8px;
+        width: 36px;
+        height: 36px;
+    }
+    .sidebar .icon {
+        width: 20px;
+        height: 20px;
+    }
+    .container {
+        margin-left: 0;
+        margin-bottom: 60px;
+        padding: 80px 15px;
+        min-height: calc(100vh - 120px);
+    }
+    .quote {
+        font-size: 1.8em;
+    }
+    .subquote {
+        font-size: 1em;
+    }
+    .card {
+        padding: 15px;
+        max-width: 90%;
+    }
+    .input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    .input-group input, .input-group button {
+        max-width: 100%;
+    }
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px;
+    }
+    .calendar-grid div {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    .timer {
+        font-size: 2em;
+    }
+    .button-group {
+        gap: 10px;
+    }
+    .view-plan-btn, .timer-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
+        padding: 6px 8px;
+    }
+    .navbar .logo {
+        font-size: 1em;
+    }
+    .sidebar a {
+        padding: 6px;
+        width: 32px;
+        height: 32px;
+    }
+    .sidebar .icon {
+        width: 18px;
+        height: 18px;
+    }
+    .container {
+        padding: 60px 10px;
+    }
+    .quote {
+        font-size: 1.5em;
+    }
+    .subquote {
+        font-size: 0.9em;
+    }
+    .card {
+        padding: 10px;
+    }
+    .calendar-grid div {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+    .timer {
+        font-size: 1.8em;
+    }
+}
+/* Ensure touch support */
+.sidebar a, .calendar-grid div, .view-plan-btn, .timer-btn, .input-group button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
